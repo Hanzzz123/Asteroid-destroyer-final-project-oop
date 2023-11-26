@@ -29,12 +29,16 @@ public class MainMenuScreen implements Screen {
     private void setupUI() {
         Table table = new Table();
         table.setFillParent(true);
-
+        
+        table.center().top();
+        
         TextButton newGameButton = new TextButton("", game.skin, "newGameButtonActive");
         TextButton loadGameButton = new TextButton("", game.skin, "loadGameButtonActive");
         TextButton settingsButton = new TextButton("", game.skin, "settingsButtonActive");
         TextButton exitButton = new TextButton("", game.skin, "exitButtonActive");
-
+        TextButton titleButton = new TextButton("", game.skin, "titleButtonActive");
+        
+        table.add(titleButton).width(600f).height(150f).padTop(50f).row(); // Adjust width, height, and padding as needed
         table.add(newGameButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padBottom(20).row();
         table.add(loadGameButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padBottom(20).row();
         table.add(settingsButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padBottom(20).row();
