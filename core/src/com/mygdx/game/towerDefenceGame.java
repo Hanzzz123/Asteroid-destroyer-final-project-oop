@@ -24,10 +24,20 @@ public class towerDefenceGame extends Game {
         skin.add("loadGameButtonActive", new Texture("loadGameButtonActive.png"));
         skin.add("settingsButtonActive", new Texture("settingsButtonActive.png"));
         skin.add("exitButtonActive", new Texture("exitButtonActive.png"));
-
+        skin.add("titleButtonActive", new Texture("titleButtonActive.png"));
         // Create a default BitmapFont
         BitmapFont font = new BitmapFont();
         skin.add("default-font", font);
+        
+        TextButton.TextButtonStyle titleButtonStyle = new TextButton.TextButtonStyle();
+        titleButtonStyle.up = skin.getDrawable("titleButtonActive");
+        titleButtonStyle.down = skin.getDrawable("titleButtonActive");
+        titleButtonStyle.checked = skin.getDrawable("titleButtonActive");
+        titleButtonStyle.over = skin.getDrawable("titleButtonActive");
+        titleButtonStyle.font = skin.getFont("default-font");
+        titleButtonStyle.up.setMinWidth(600f);  // Adjust as needed
+        titleButtonStyle.up.setMinHeight(150f); // Adjust as needed
+        skin.add("titleButtonActive", titleButtonStyle);
 
         // Create a TextButton style for newGameButtonActive
         TextButton.TextButtonStyle newGameButtonStyle = new TextButton.TextButtonStyle();
