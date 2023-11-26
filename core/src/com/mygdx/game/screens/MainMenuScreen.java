@@ -1,12 +1,16 @@
 package com.mygdx.game.screens;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.towerDefenceGame;
@@ -16,27 +20,33 @@ public class MainMenuScreen implements Screen {
     private static final int BUTTON_WIDTH = 380;
     private static final int BUTTON_HEIGHT = 100;
 
-    private towerDefenceGame game;
-    private Stage stage;
+    private final towerDefenceGame game;
+    private final Stage stage;
+
 
     public MainMenuScreen(towerDefenceGame game) {
         this.game = game;
         this.stage = new Stage(new ScreenViewport());
-
+        Gdx.input.setInputProcessor(stage);
         setupUI();
+
     }
 
     private void setupUI() {
-        Table table = new Table();
+        final Table table = new Table();
         table.setFillParent(true);
         
         table.center().top();
-        
-        TextButton newGameButton = new TextButton("", game.skin, "newGameButtonActive");
+
+        //active
+        final TextButton newGameButton = new TextButton("", game.skin, "newGameButtonActive");
         TextButton loadGameButton = new TextButton("", game.skin, "loadGameButtonActive");
         TextButton settingsButton = new TextButton("", game.skin, "settingsButtonActive");
-        TextButton exitButton = new TextButton("", game.skin, "exitButtonActive");
+        final TextButton exitButton = new TextButton("", game.skin, "exitButtonActive");
         TextButton titleButton = new TextButton("", game.skin, "titleButtonActive");
+
+        //hover
+        newGameButton.getStyle().over = game.skin.getDrawable("newGameHovered");
         
         table.add(titleButton).width(600f).height(150f).padTop(50f).row(); // Adjust width, height, and padding as needed
         table.add(newGameButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padBottom(20).row();
@@ -49,7 +59,7 @@ public class MainMenuScreen implements Screen {
         newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Handle New Game button click
+                game.changeScreen(towerDefenceGame.NEWGAME);
             }
         });
 
@@ -78,7 +88,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-        
+
     }
 
     @Override
@@ -88,6 +98,7 @@ public class MainMenuScreen implements Screen {
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
         stage.draw();
+
     }
 
     @Override
@@ -111,7 +122,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
         stage.dispose();
     }
 }
