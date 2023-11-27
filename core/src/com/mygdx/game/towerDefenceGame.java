@@ -13,6 +13,8 @@ import com.mygdx.game.screens.LoadGameScreen;
 import com.mygdx.game.screens.MainGameScreen;
 import com.mygdx.game.screens.MainMenuScreen;
 import com.mygdx.game.screens.SettingsScreen;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 
 public class towerDefenceGame extends Game {
     public static final int WIDTH = 1440;
@@ -23,12 +25,57 @@ public class towerDefenceGame extends Game {
     private MainMenuScreen mainMenuScreen;
     private MainGameScreen newGameScreen;
     private LoadGameScreen loadGameScreen;
-    private  SettingsScreen settingsScreen;
+    private SettingsScreen settingsScreen;
     public final static int MAINMENUSCREEN = 0;
     public final static int NEWGAME = 1;
     public final static int LOADGAME = 2;
     public final static int SETTINGSSCREEN = 3;
-
+    
+    private static final String PREF_MUSIC_VOLUME = "volume";
+	private static final String PREF_MUSIC_ENABLED = "music.enabled";
+	private static final String PREF_SOUND_ENABLED = "sound.enabled";
+	private static final String PREF_SOUND_VOL = "sound";
+	private static final String PREFS_NAME = "b2dtut";
+	
+	protected Preferences getPrefs() {
+		return Gdx.app.getPreferences(PREFS_NAME);
+	}
+ 
+	public boolean isSoundEffectsEnabled() {
+		return getPrefs().getBoolean(PREF_SOUND_ENABLED, true);
+	}
+ 
+	public void setSoundEffectsEnabled(boolean soundEffectsEnabled) {
+		getPrefs().putBoolean(PREF_SOUND_ENABLED, soundEffectsEnabled);
+		getPrefs().flush();
+	}
+ 
+	public boolean isMusicEnabled() {
+		return getPrefs().getBoolean(PREF_MUSIC_ENABLED, true);
+	}
+ 
+	public void setMusicEnabled(boolean musicEnabled) {
+		getPrefs().putBoolean(PREF_MUSIC_ENABLED, musicEnabled);
+		getPrefs().flush();
+	}
+ 
+	public float getMusicVolume() {
+		return getPrefs().getFloat(PREF_MUSIC_VOLUME, 0.5f);
+	}
+ 
+	public void setMusicVolume(float volume) {
+		getPrefs().putFloat(PREF_MUSIC_VOLUME, volume);
+		getPrefs().flush();
+	}
+	
+	public float getSoundVolume() {
+		return getPrefs().getFloat(PREF_SOUND_VOL, 0.5f);
+	}
+ 
+	public void setSoundVolume(float volume) {
+		getPrefs().putFloat(PREF_SOUND_VOL, volume);
+		getPrefs().flush();
+	}
 
 
     @Override
@@ -105,10 +152,12 @@ public class towerDefenceGame extends Game {
 
         // Register the TextButtonStyle for exitButtonActive
         skin.add("exitButtonActive", exitButtonStyle);
-
+        
         mainMenuScreen = new MainMenuScreen(this);
         setScreen(mainMenuScreen);
         //this.setScreen(new MainMenuScreen(this));
+        
+        
     }
 
     public void render() {
@@ -139,7 +188,7 @@ public class towerDefenceGame extends Game {
                 break;
             case SETTINGSSCREEN:
                 if (settingsScreen == null) {
-                    settingsScreen = new SettingsScreen();
+                    settingsScreen = new SettingsScreen(this);
                 }
                 setScreen(settingsScreen);
                 break;
