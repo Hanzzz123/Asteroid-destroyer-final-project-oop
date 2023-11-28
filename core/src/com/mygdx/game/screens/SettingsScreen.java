@@ -83,6 +83,22 @@ public class SettingsScreen implements Screen {
             }
         });
         
+        volumeMusicSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setMusicVolume(volumeMusicSlider.getValue());
+                game.updateMusicSettings();
+            }
+        });
+        
+        musicCheckbox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setMusicEnabled(musicCheckbox.isChecked());
+                game.updateMusicSettings();
+            }
+        });
+        
         
 
         table.add(titleLabel).colspan(2).align(Align.center);
@@ -105,6 +121,8 @@ public class SettingsScreen implements Screen {
         // Add table to stage
         stage.addActor(table);
     }
+    
+    
 
     @Override
     public void show() {
