@@ -2,6 +2,7 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -40,11 +41,12 @@ public class SettingsScreen implements Screen {
     public SettingsScreen(final towerDefenceGame game) {
         this.game = game;
         stage = new Stage(new ScreenViewport());
-        skin = game.skin;
+        skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
         table = new Table();
         table.setFillParent(true);
         // Uncomment the line below to show debug lines
-        // table.setDebug(true);
+        //table.setDebug(true);
+
 
         // Initialize labels
         titleLabel = new Label("Preferences", skin);
@@ -99,12 +101,15 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+       Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void render(float delta) {
         // Your render logic here
+        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }

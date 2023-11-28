@@ -27,7 +27,6 @@ public class MainMenuScreen implements Screen {
     public MainMenuScreen(towerDefenceGame game) {
         this.game = game;
         this.stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
         setupUI();
 
     }
@@ -44,9 +43,6 @@ public class MainMenuScreen implements Screen {
         TextButton settingsButton = new TextButton("", game.skin, "settingsButtonActive");
         final TextButton exitButton = new TextButton("", game.skin, "exitButtonActive");
         TextButton titleButton = new TextButton("", game.skin, "titleButtonActive");
-
-        //hover
-        newGameButton.getStyle().over = game.skin.getDrawable("newGameHovered");
         
         table.add(titleButton).width(600f).height(150f).padTop(50f).row(); // Adjust width, height, and padding as needed
         table.add(newGameButton).width(BUTTON_WIDTH).height(BUTTON_HEIGHT).padBottom(20).row();
@@ -73,7 +69,7 @@ public class MainMenuScreen implements Screen {
         settingsButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Handle Settings button click
+                game.changeScreen(towerDefenceGame.SETTINGSSCREEN);
             }
         });
 
@@ -88,7 +84,7 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override

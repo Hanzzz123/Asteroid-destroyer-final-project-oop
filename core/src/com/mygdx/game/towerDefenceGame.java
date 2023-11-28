@@ -1,9 +1,11 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.mygdx.game.screens.LoadGameScreen;
@@ -92,6 +94,7 @@ public class towerDefenceGame extends Game {
         skin.add("settingsHovered",new Texture("settingsHovered.png"));
         skin.add("exitHovered",new Texture("exitHovered.png"));
 
+
         // Create a default BitmapFont
         BitmapFont font = new BitmapFont();
         skin.add("default-font", font);
@@ -99,8 +102,6 @@ public class towerDefenceGame extends Game {
         TextButton.TextButtonStyle titleButtonStyle = new TextButton.TextButtonStyle();
         titleButtonStyle.up = skin.getDrawable("titleButtonActive");
         titleButtonStyle.down = skin.getDrawable("titleButtonActive");
-        titleButtonStyle.checked = skin.getDrawable("titleButtonActive");
-        titleButtonStyle.over = skin.getDrawable("titleButtonActive");
         titleButtonStyle.font = skin.getFont("default-font");
         titleButtonStyle.up.setMinWidth(600f);  // Adjust as needed
         titleButtonStyle.up.setMinHeight(150f); // Adjust as needed
@@ -110,7 +111,6 @@ public class towerDefenceGame extends Game {
         TextButton.TextButtonStyle newGameButtonStyle = new TextButton.TextButtonStyle();
         newGameButtonStyle.up = skin.getDrawable("newGameButtonActive");
         newGameButtonStyle.down = skin.getDrawable("newGameButtonActive");
-        newGameButtonStyle.checked = skin.getDrawable("newGameButtonActive");
         newGameButtonStyle.over = skin.getDrawable("newGameHovered");
         newGameButtonStyle.font = skin.getFont("default-font");
 
@@ -121,7 +121,6 @@ public class towerDefenceGame extends Game {
         TextButton.TextButtonStyle loadGameButtonStyle = new TextButton.TextButtonStyle();
         loadGameButtonStyle.up = skin.getDrawable("loadGameButtonActive");
         loadGameButtonStyle.down = skin.getDrawable("loadGameButtonActive");
-        loadGameButtonStyle.checked = skin.getDrawable("loadGameButtonActive");
         loadGameButtonStyle.over = skin.getDrawable("loadGameHovered");
         loadGameButtonStyle.font = skin.getFont("default-font");
 
@@ -132,7 +131,6 @@ public class towerDefenceGame extends Game {
         TextButton.TextButtonStyle settingsButtonStyle = new TextButton.TextButtonStyle();
         settingsButtonStyle.up = skin.getDrawable("settingsButtonActive");
         settingsButtonStyle.down = skin.getDrawable("settingsButtonActive");
-        settingsButtonStyle.checked = skin.getDrawable("settingsButtonActive");
         settingsButtonStyle.over = skin.getDrawable("settingsHovered");
         settingsButtonStyle.font = skin.getFont("default-font");
 
@@ -143,13 +141,13 @@ public class towerDefenceGame extends Game {
         TextButton.TextButtonStyle exitButtonStyle = new TextButton.TextButtonStyle();
         exitButtonStyle.up = skin.getDrawable("exitButtonActive");
         exitButtonStyle.down = skin.getDrawable("exitButtonActive");
-        exitButtonStyle.checked = skin.getDrawable("exitButtonActive");
         exitButtonStyle.over = skin.getDrawable("exitHovered");
         exitButtonStyle.font = skin.getFont("default-font");
 
         // Register the TextButtonStyle for exitButtonActive
         skin.add("exitButtonActive", exitButtonStyle);
-        
+
+
         mainMenuScreen = new MainMenuScreen(this);
         setScreen(mainMenuScreen);
         //this.setScreen(new MainMenuScreen(this));
@@ -174,7 +172,6 @@ public class towerDefenceGame extends Game {
                 if (newGameScreen == null) {
                     newGameScreen = new MainGameScreen(this);
                 }
-                mainMenuScreen.dispose();
                 setScreen(newGameScreen);
                 break;
             case LOADGAME:
