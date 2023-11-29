@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -20,7 +21,8 @@ public class towerDefenceGame extends Game {
     public static final int HEIGHT = 720;
     public SpriteBatch batch;
     public Skin skin;
-
+    
+    private Music backgroundMusic;
     private MainMenuScreen mainMenuScreen;
     private MainGameScreen newGameScreen;
     private LoadGameScreen loadGameScreen;
@@ -152,7 +154,25 @@ public class towerDefenceGame extends Game {
         setScreen(mainMenuScreen);
         //this.setScreen(new MainMenuScreen(this));
         
+        backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("bgm.wav"));
+        backgroundMusic.setLooping(true);
+        backgroundMusic.setVolume(getMusicVolume());
+        if (isMusicEnabled()) {
+            backgroundMusic.play();
+        }
         
+        
+    }
+    
+    public void updateMusicSettings() {
+        backgroundMusic.setVolume(getMusicVolume());
+        if (isMusicEnabled()) {
+            if (!backgroundMusic.isPlaying()) {
+                backgroundMusic.play();
+            }
+        } else {
+        	backgroundMusic.setVolume(0f);
+        }
     }
 
     public void render() {
@@ -186,6 +206,16 @@ public class towerDefenceGame extends Game {
                 }
                 setScreen(settingsScreen);
                 break;
+                
+        }
+        updateMusicSettings();
+    }
+    
+    public void dispose() {
+        super.dispose();
+        // Dispose background music
+        if (backgroundMusic != null) {
+            backgroundMusic.dispose();
         }
     }
 }

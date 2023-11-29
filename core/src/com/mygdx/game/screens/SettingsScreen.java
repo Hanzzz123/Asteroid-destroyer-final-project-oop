@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
@@ -49,11 +50,15 @@ public class SettingsScreen implements Screen {
 
 
         // Initialize labels
-        titleLabel = new Label("Preferences", skin);
+        titleLabel = new Label("Settings", skin);
         volumeMusicLabel = new Label("Music Volume:", skin);
         volumeSoundLabel = new Label("Sound Volume:", skin);
         musicOnOffLabel = new Label("Music:", skin);
         soundOnOffLabel = new Label("Sound Effects:", skin);
+        
+     
+        
+     
 
         // Initialize sliders
         volumeMusicSlider = new Slider(0f, 1f, 0.1f, false, skin);
@@ -77,8 +82,25 @@ public class SettingsScreen implements Screen {
                 game.changeScreen(towerDefenceGame.MAINMENUSCREEN);
             }
         });
+        
+        volumeMusicSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setMusicVolume(volumeMusicSlider.getValue());
+                game.updateMusicSettings();
+            }
+        });
+        
+        musicCheckbox.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                game.setMusicEnabled(musicCheckbox.isChecked());
+                game.updateMusicSettings();
+            }
+        });
+        
+        
 
-        // Add components to table
         table.add(titleLabel).colspan(2).align(Align.center);
         table.row().pad(10, 0, 0, 0);
         table.add(volumeMusicLabel).left();
@@ -95,9 +117,12 @@ public class SettingsScreen implements Screen {
         table.row().pad(10, 0, 0, 0);
         table.add(backButton).colspan(2).align(Align.center);
 
+
         // Add table to stage
         stage.addActor(table);
     }
+    
+    
 
     @Override
     public void show() {
