@@ -45,7 +45,7 @@ public class SettingsScreen implements Screen {
         table = new Table();
         table.setFillParent(true);
         // Uncomment the line below to show debug lines
-        //table.setDebug(true);
+        table.setDebug(true);
 
 
         // Initialize labels
