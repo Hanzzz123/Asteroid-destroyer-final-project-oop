@@ -22,9 +22,6 @@ public class MainMenuScreen implements Screen {
 
     private final towerDefenceGame game;
     private final Stage stage;
-    
-   
-
 
 
     public MainMenuScreen(towerDefenceGame game) {
@@ -88,6 +85,7 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(null);
     }
 
     @Override
@@ -97,7 +95,6 @@ public class MainMenuScreen implements Screen {
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
         stage.draw();
-
     }
 
     @Override

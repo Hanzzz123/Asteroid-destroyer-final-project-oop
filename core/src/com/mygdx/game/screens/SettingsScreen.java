@@ -41,12 +41,12 @@ public class SettingsScreen implements Screen {
 
     public SettingsScreen(final towerDefenceGame game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport());
+        this.stage = new Stage(new ScreenViewport());
         skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
         table = new Table();
         table.setFillParent(true);
         // Uncomment the line below to show debug lines
-        table.setDebug(true);
+        //table.setDebug(true);
 
 
         // Initialize labels
