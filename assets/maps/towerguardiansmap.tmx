@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="10" tilewidth="72" tileheight="72" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="PlayStation 3 - LittleBigPlanet 2 - White Ceramic Tiles.tsx"/>
+ <tileset firstgid="57" source="PC Computer - Shadow Warrior - Animated Tiles.tsx"/>
+ <tileset firstgid="237" source="PC Computer - Teeworlds - Grass Tiles.tsx"/>
+ <tileset firstgid="503" source="PlayStation 3 - LittleBigPlanet 2 - White Ceramic Tiles.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="10">
+  <data encoding="csv">
+379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,
+482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,482,
+496,496,496,496,496,496,496,496,496,496,496,496,496,113,113,113,496,496,496,496,
+113,113,113,496,496,113,113,113,496,113,113,113,496,113,496,113,496,496,496,496,
+482,482,113,496,496,113,496,113,496,113,496,113,496,113,496,113,496,113,113,113,
+482,496,113,496,496,113,496,113,496,113,496,113,113,113,496,113,496,113,496,496,
+496,496,113,113,113,113,496,113,496,113,496,496,496,496,496,113,496,113,496,496,
+496,496,496,496,496,496,496,113,113,113,496,496,496,496,496,113,113,113,496,496,
+379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,
+379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379,379
+</data>
+ </layer>
+</map>
